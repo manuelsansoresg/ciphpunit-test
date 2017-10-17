@@ -49,6 +49,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+/*
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+*/
+
+$route['default_controller'] = 'site';
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = TRUE;
+
+$route['admin/([a-zA-Z_-]+)/search/(:any)/offset/(:num)'] = 'users/admin/index/search/$2/offset/$3';
+$route['admin/([a-zA-Z_-]+)/search/(:any)/offset']        = 'users/admin/index/search/$2';
+$route['admin/([a-zA-Z_-]+)/offset/(:num)']               = 'users/admin/index/offset/$2';
+//$route['admin/([a-zA-Z_-]+)/(:any)/(:any)']               = '$1/admin/$2/$3/$4';
+$route['admin/([a-zA-Z_-]+)/edit/(:any)']                 = 'users/admin/edit/$2';
+$route['admin/([a-zA-Z_-]+)/delete/(:any)']               = 'users/admin/delete/$2';
+$route['admin/([a-zA-Z_-]+)/offset']                      = 'users/admin/index/offset';
+$route['admin/([a-zA-Z_-]+)/(:any)']                      = 'users/admin/$2';
+$route['admin/([a-zA-Z_-]+)']                             = 'users/admin/index';
+$route['admin']                                           = 'users/admin';
