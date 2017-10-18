@@ -1,21 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="">
-  <head>
+<html class="no-js" lang="es">
+<head>
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-  <title>Site | <?php echo $title ?></title>
+  <title>Admin | <?php echo $title ?></title>
   <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/admin.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <style>
-    body {
-      padding-top: 50px;
-    }
-    .starter-template {
-      padding: 40px 15px;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/vendor/offline/themes/offline-theme-default.css">
+  <link rel="stylesheet" href="/assets/vendor/offline/themes/offline-theme-spanish.css">
+
   <?php echo $_styles ?>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -25,39 +20,100 @@
   <![endif]-->
   <script src="/assets/vendor/modernizr.js"></script>
 </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+
+<body>
+  <div class="app">
+
+    <header class="header header-fixed navbar">
+      <div class="brand">
+        <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
+
+        <a href="/admin" class="navbar-brand text-white">
+          <i class="fa fa-stop mg-r-sm"></i>
+          <span class="heading-font">
+            Panel <b>SENSORES</b>
+          </span>
+        </a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right off-right">
+        <li class="hidden-xs">
+          <a href="#">
+            <?php echo $_SESSION['session_name'] ?>
+          </a>
+        </li>
+
+        <li class="quickmenu">
+          <a href="javascript:;" data-toggle="dropdown">
+            <img src="<?php echo $imagen = (isset($_SESSION['session_gravatar']))? $_SESSION['session_gravatar'] : base_url('assets/img/avatar.jpg') ?>" class="avatar pull-left img-circle" alt="user" title="user">
+            <i class="caret mg-l-xs hidden-xs no-margin"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right mg-r-xs">
+            <li>
+              <a href="/admin/access/edit/<?php echo $_SESSION['session_id'] ?>">Cambiar Contraseña</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="/access/logout">Cerrar Sesión</a>
+            </li>
           </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+        </li>
+      </ul>
+    </header>
 
-    <div class="container">
+    <section class="layout">
+      <aside class="sidebar canvas-left">
+        <nav class="main-navigation">
+          <ul>
+            <li>
+              <a href="/">
+                <i class="fa fa-dashboard"></i>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <!-- <li>
+              <a href="/admin/access">
+                <i class="fa fa-lock"></i>
+                <span>Administradores</span>
+              </a>
+            </li> -->
+          </ul>
+        </nav>
 
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
+        <footer>
+          <div class="footer-toolbar pull-left">
+            <a href="javascript:;" class="toggle-sidebar pull-right hidden-xs">
+              <i class="fa fa-angle-left"></i>
+            </a>
+          </div>
+        </footer>
+
+      </aside>
+
+
+      <section class="main-content">
+        <div class="content-wrap">
+          <?php echo $content ?>
+        </div>
+      </section>
+    </section>
+
+  </div>
+
+  <div id="admin-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="detalle_label" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
 
     </div>
+    </div>
+  </div>
 
-    <script src="/assets/vendor/jquery.js"></script>
-    <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <?php echo $_scripts ?>
-  </body>
+  <script src="/assets/vendor/jquery.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/vendor/off-canvas.js"></script>
+  <script src="/assets/vendor/jquery.placeholder.js"></script>
+  <script src="/assets/vendor/offline/offline.min.js"></script>
+  <?php echo $_scripts ?>
+  <script src="/assets/js/main.js"></script>
+</body>
 </html>

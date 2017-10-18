@@ -9,13 +9,14 @@ class Access extends Admin_Controller {
 
 	public function index()
 	{
+
 		$this->load->model('administrator');
 		$this->form_validation->set_rules('user', 'Usuario', 'required|trim');
 		$this->form_validation->set_rules('pass', 'Password', 'required|trim');
 
 		if ($this->form_validation->run()) {
 			if ($this->administrator->login($this->input->post('user', TRUE), $this->input->post('pass', TRUE))) {
-				redirect('admin');
+				redirect('home');
 			} else {
 				$this->session->set_flashdata('error', TRUE);
 				redirect('access');
